@@ -110,7 +110,7 @@ export const appPool = mysql.createPool({
 }).promise();
 
 export async function getDogs() {
-  const [rows] = await appPool.query("SELECT * FROM Dogs");
+  const [rows] = await appPool.query("SELECT * FROM WalkRequests
   return rows;
 }
 const Dogs = await getDogs();
