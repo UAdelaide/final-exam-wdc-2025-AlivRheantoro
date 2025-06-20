@@ -1,6 +1,8 @@
 import express from 'express';
 import { initDatabase, getDogs } from './db.js';
 
+await initDatabase();
+
 const app = express();
 
 app.get("/api/dogs", async (req, res) => {
