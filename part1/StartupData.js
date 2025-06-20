@@ -1,7 +1,7 @@
 // Startup.js
 const db = require('./db');
 
-async function seedDatabase() {
+module.exports = async function StartupDatabase() {
   try {
     await db.query(`DROP DATABASE IF EXISTS DogWalkService`);
     await db.query(`CREATE DATABASE DogWalkService`);
@@ -102,7 +102,5 @@ async function seedDatabase() {
   } catch (err) {
     console.error('Startup error:', err.message);
   }
-}
-
-module.exports = seedDatabase;
+};
 
