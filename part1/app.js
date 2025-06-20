@@ -9,8 +9,8 @@ seedDatabase();
 app.use('/api', apiRoutes);
 
 app.get('/', (req, res) => {
-    res.send('Check Insomnia GET for API response')
-})
+    res.send('Check Insomnia GET for API response');
+});
 
 const PORT = 3000;
 
