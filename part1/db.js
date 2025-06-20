@@ -105,9 +105,9 @@ export async function initDatabase() {
           ((SELECT user_id FROM Users WHERE username = 'dogowner'), 'Dug', 'large'),
           ((SELECT user_id FROM Users WHERE username = 'eggwalker'), 'egg', 'small');
       `);
-      console.log("✅ Inserted Dogs");
+      console.log("Inserted Dogs");
     } else {
-      console.log("⚠️ Skipped Dogs (already exists)");
+      console.log("Skipped Dogs (already exists)");
     }
 
     // Insert WalkRequests if none exist
@@ -121,9 +121,9 @@ export async function initDatabase() {
           ((SELECT dog_id FROM Dogs WHERE name = 'Dug'), '2025-07-10 11:00:00', 30, 'This Street', 'accepted'),
           ((SELECT dog_id FROM Dogs WHERE name = 'egg'), '2025-07-10 12:30:00', 20, 'That Street', 'cancelled');
       `);
-      console.log("✅ Inserted WalkRequests");
+      console.log("Inserted WalkRequests");
     } else {
-      console.log("⚠️ Skipped WalkRequests (already exists)");
+      console.log("Skipped WalkRequests (already exists)");
     }
 
   } catch (err) {
