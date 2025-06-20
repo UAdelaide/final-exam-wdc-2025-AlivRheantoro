@@ -3,7 +3,7 @@ const app = express();
 const port = 3000;
 
 const db = require('./db');
-const insertSeedData = require('./insertSeedData');
+const insertSeedData = require('./StartupData');
 
 // Insert data on startup
 insertSeedData();
