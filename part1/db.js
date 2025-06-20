@@ -6,8 +6,10 @@ const pool = mysql.createPool({
     database: 'DogWalkService'
 }).promise()
 
-async function getDogs()
-const result = await pool.query("Select * FROM Dogs")
-console.log(result)
+async function getDogs() {
+    const result = await pool.query("Select * FROM Dogs")
+    console.log(result)
+
+}
 
 
