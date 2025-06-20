@@ -100,7 +100,7 @@ module.exports = async function StartupDatabase() {
 
     console.log('Database and seed data ready!');
   } catch (err) {
-    console.error('❌ Error setting up database:', err);
+    console.error('Error setting up database:', err);
     throw err;
   }
 };
