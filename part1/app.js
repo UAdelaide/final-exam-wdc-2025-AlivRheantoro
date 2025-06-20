@@ -6,7 +6,7 @@ const db = require('./db');
 const insertSeedData = require('./StartupData');
 
 // Insert data on startup
-insertSeedData();
+StartupData();
 
 // Routes
 app.use('/api', require('./routes/dogs'));
