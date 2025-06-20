@@ -132,6 +132,12 @@ export async function getAPIDogs(){
   return rows;
 }
 
+
+
+
+
+
+
 export async function getDogs() {
   const [rows] = await appPool.query("SELECT * FROM Dogs");
   return rows;
