@@ -66,7 +66,14 @@ CREATE TABLE IF NOT EXISTS WalkRatings (
 );
 `;
 
-
+export async function initDatabase() {
+  try {
+    await connection.query(dbInitSQL);
+    console.log("✅ Database and tables ensured.");
+  } catch (err) {
+    console.error("❌ Failed to initialize DB:", err);
+  }
+}
 
 const pool = mysql.createPool({
     host: 'localhost',
