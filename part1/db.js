@@ -109,6 +109,18 @@ export const appPool = mysql.createPool({
     database: 'DogWalkService'
 }).promise();
 
+export async function getDogsWithOwners() {
+  const [rows] = await connection.query(`
+    SELECT
+      Dogs.name AS dog_name,
+      Dogs.size,
+      Users.username AS owner_username
+    FROM Dogs
+    JOIN Users ON Dogs.owner_id = Users.user_id
+  `);
+  return rows;
+}
+
 export async function getDogs() {
   const [rows] = await appPool.query("SELECT * FROM Dogs");
   return rows;
