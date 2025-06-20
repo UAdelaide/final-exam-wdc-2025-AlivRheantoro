@@ -1,4 +1,4 @@
-import exress from 'express'
+import exress from 'express';
 
 const app = express();
 
