@@ -33,9 +33,9 @@ async function seedDatabase() {
       ((SELECT dog_id FROM Dogs WHERE name = 'egg'), '2025-07-10 12:30:00', 20, 'That Street', 'cancelled')
     `);
 
-    console.log('Database Startup');
+    console.log('✅ Database seeded');
   } catch (err) {
-    console.error('Startup error:', err);
+    console.error('❌ Seed error:', err);
   }
 }
 
