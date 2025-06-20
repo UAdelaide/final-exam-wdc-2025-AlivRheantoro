@@ -1,7 +1,7 @@
 // Startup.js
 const db = require('./db');
 
-module.exports = async function StartupDatabase() {
+async function seedDatabase() {
   try {
     await db.query(`DROP DATABASE IF EXISTS DogWalkService`);
     await db.query(`CREATE DATABASE DogWalkService`);
@@ -98,10 +98,11 @@ module.exports = async function StartupDatabase() {
       ((SELECT dog_id FROM Dogs WHERE name = 'egg'), '2025-07-10 12:30:00', 20, 'That Street', 'cancelled')
     `);
 
-    console.log('Database and seed data ready!');
+    console.log('Schema created and data seeded.');
   } catch (err) {
-    console.error('Error setting up database:', err);
-    throw err;
+    console.error('Startup error:', err.message);
   }
-};
+}
+
+module.exports = seedDatabase;
 
