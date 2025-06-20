@@ -15,7 +15,7 @@ const app = express();
 app.get("dogs", async (req, res) => {
   try {
     const dogs = await getDogs();
-    res.send(dogs);
+    res.json(dogs);
   } catch (err) {
     res.status(500).send('Failed to fetch dogs');
   }
@@ -24,7 +24,7 @@ app.get("dogs", async (req, res) => {
 app.get("/api/dogs", async (req, res) => {
   try {
     const dogs = await getAPIDogs();
-    res.send(dogs);
+    res.json(dogs);
   } catch (err) {
     res.status(500).send('Failed to fetch dogs');
   }
