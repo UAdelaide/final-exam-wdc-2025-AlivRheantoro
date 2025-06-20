@@ -8,11 +8,10 @@ app.use(express.json());
 seedDatabase();
 app.use('/api', apiRoutes);
 
+const PORT = 3000;
 app.get('/', (req, res) => {
     res.send('Check Insomnia GET for API response');
 });
-
-const PORT = 3000;
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
