@@ -28,6 +28,12 @@ app.get("/api/walkrequests/open", async (req, res) => {
   res.json(openRequests);
 });
 
+import { APIWalkerSummary } from './db.js';
+
+app.get("/api/walkers/summary", async (req, res) => {
+  const summary = await APIWalkerSummary();
+  res.json(summary);
+});
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
