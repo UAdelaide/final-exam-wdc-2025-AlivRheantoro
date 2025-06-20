@@ -13,7 +13,7 @@ router.get('/dogs', async (req, res) => {
     `);
     res.json(rows);
   } catch (err) {
-    res.status(500).json({ error: 'Failed to retrieve dogs', details: err.message });
+    res.status(404).json({ error: 'Failed to retrieve dogs', details: err.message });
   }
 });
 
@@ -29,7 +29,7 @@ router.get('/walkrequests/open', async (req, res) => {
     `);
     res.json(rows);
   } catch (err) {
-    res.status(500).json({ error: 'Failed to retrieve open walk requests', details: err.message });
+    res.status(404).json({ error: 'Failed to retrieve open walk requests', details: err.message });
   }
 });
 
