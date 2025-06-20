@@ -3,8 +3,8 @@ const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     password: '',
-    database:D
-});
+    database: 'DogWalkService'
+}).promise;
 
 const = mysql.createPool({
   host: 'localhost',
