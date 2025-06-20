@@ -10,5 +10,7 @@ async function getDogs() {
     const [rows] = await pool.query("Select * FROM Dogs");
     return rows;
 }
-console.log(result)
+
+const Dogs 
+console.log(rows)
 
