@@ -2,14 +2,13 @@ const express = require('express');
 const app = express();
 
 const apiRoutes = require('./routes/api');
-const StartupDatabase = require('./StartupData');
+const seedDatabase = require('./StartupData');
 
-
-StartupDatabase();
+app.use(express.json());
+seedDatabase();
 app.use('/api', apiRoutes);
 
 const PORT = 3000;
-app.use(express.json());
 
 app.get('/', (req, res) => {
     res.send('Check Insomnia GET for API response');
