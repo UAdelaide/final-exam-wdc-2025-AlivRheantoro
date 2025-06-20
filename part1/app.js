@@ -4,13 +4,8 @@ const apiRoutes = require('./routes/api');
 const seedDatabase = require('./StartupData');
 
 app.use(express.json());
-
-
 seedDatabase();
-
-
 app.use('/api', apiRoutes);
-
 
 const PORT = 3000;
 app.listen(PORT, () => {
