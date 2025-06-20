@@ -119,9 +119,9 @@ let db;
       `);
     }
 
-    console.log('✅ Database and test data ready');
+    console.log('Database and test data ready');
   } catch (err) {
-    console.error('❌ Error setting up database:', err);
+    console.error('Error setting up database:', err);
   }
 })();
 
