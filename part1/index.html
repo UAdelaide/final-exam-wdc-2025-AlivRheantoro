@@ -20,14 +20,12 @@
   <div id="app">
     <h1>DOG TIME!!!</h1>
 
-
     <button type="button" @click="getDog">SHOW DOG</button>
     <button type="button" @click="getDog">AGAIN</button>
     <button type="button" @click="getDog">AGAIN 2 ELECTRIC BOOGALOO</button>
 
     <p>Breed?? <input type="text" v-model="breed"></p>
     <p>Rate this dog: <input type="number" v-model="rating"></p>
-
 
     <img v-if="dogPic" :src="dogPic" width="200">
 
