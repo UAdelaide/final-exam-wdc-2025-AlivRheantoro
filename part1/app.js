@@ -15,7 +15,7 @@ let db;
 
 (async () => {
   try {
-    // Create DB if it doesn't exist
+    // Connect to MySQL without database to create DB if needed
     const connection = await mysql.createConnection({
       host: 'localhost',
       user: 'root',
@@ -120,6 +120,13 @@ let db;
     }
 
     console.log('Database and test data ready');
+
+    // Start the server AFTER DB is ready
+    const PORT = 3000;
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running at http://localhost:${PORT}`);
+    });
+
   } catch (err) {
     console.error('Error setting up database:', err);
   }
@@ -184,10 +191,3 @@ app.get('/api/walkers/summary', async (req, res) => {
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
-
-module.exports = app;
-
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
-});
