@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dog of the Day</title>
+  <script src="https://unpkg.com/vue@3"></script>
+  <style>
+    body {
+      background: linear-gradient(to right, yellow, pink, cyan);
+      font-family: 'Comic Sans MS', cursive;
+      color: lightgray;
+    }
+    .dog-container {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-evenly;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 50px;
+    }
+    img {
+      border: 10px dashed red;
+      animation: spin 4s infinite linear;
+      width: 300px;
+      height: 300px;
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .button-area {
+      margin-top: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="dog-container" @click="fetchDog">
+      <h1 tabindex="0">{{ title }}</h1>
+      <img :src="dogImage" alt="" />
+      <p>Breed: {{ breed }}</p>
+      <button class="button-area" @mouseover="fetchDog">Hover to refresh dog</button>
+    </div>
+  </div>
+
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          title: "🐶 Dog of the Day 🐾",
+          dogImage: "",
+          breed: "Mystery Pupper"
+        };
+      },
+      mounted() {
+        this.fetchDog();
+      },
+      methods: {
+        async fetchDog() {
+          const res = await fetch('https://dog.ceo/api/breeds/image/random');
+          const data = await res.json();
+          this.dogImage = data.message;
+        }
+      }
+    });
+    app.mount('#app');
+  </script>
+</body>
+</html>
