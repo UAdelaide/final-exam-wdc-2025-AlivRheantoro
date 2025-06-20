@@ -95,9 +95,9 @@ export async function initDatabase() {
         ((SELECT dog_id FROM Dogs WHERE name = 'egg'), '2025-07-10 12:30:00', 20, 'That Street', 'cancelled');
     `);
 
-    console.log("✅ Seed data inserted.");
+    console.log("Seed data inserted.");
   } catch (err) {
-    console.error("❌ Failed to initialize DB:", err);
+    console.error("Failed to initialize DB:", err);
   }
 }
 
