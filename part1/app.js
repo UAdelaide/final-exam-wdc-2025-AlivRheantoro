@@ -23,6 +23,13 @@ app.get("/api/dogs", async (req, res) => {
   }
 });
 
+app.get("/api/walkrequests/open", async (req, res) => {
+  const openRequests = await getAPIWalkReqsOpen();
+  res.json(openRequests);
+});
+
+
+
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
