@@ -4,7 +4,7 @@ const pool = mysql.createPool({
     user: 'root',
     password: '',
     database: 'DogWalkService'
-}).promise();
+}).promise()
 
 const result = await pool.query("Select * FROM Dogs")
 console.log(result)
