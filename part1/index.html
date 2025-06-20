@@ -1,69 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
   <title>Dog of the Day</title>
   <script src="https://unpkg.com/vue@3"></script>
   <style>
     body {
-      background-color: #ff0; /* bad contrast */
-      color: red;
-      font-family: Comic Sans MS;
-      margin: 0;
-      padding: 10px;
+      background-color: lime;
+      color: yellow;
+      font-family: cursive;
+      font-size: 10px;
+      text-align: center;
     }
-    button {
-      margin: 5px;
-      padding: 10px;
-      font-size: 18px;
-    }
-    .info {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-    .dog-image {
-      margin-top: 10px;
-      width: 300px;
-      height: auto;
-      border: 5px dotted green;
+    img {
+      border: 3px dashed red;
     }
   </style>
 </head>
 <body>
   <div id="app">
-    <h1>🐶 D0G 0F TH3 D4Y 🐶</h1>
+    <h1>DOG TIME!!!</h1>
 
-    <div class="info">
-      <div>Dog Name: <input type="text" placeholder="Doggo123"></div>
-      <div>Breed: <select><option>Labrador</option><option>Beagle</option><option>Pug</option></select></div>
-      <div>Rating: <input type="number" min="1" max="5">/5</div>
-      <button @click="loadDog">Click for Surprise Dog Pic!</button>
-      <button @click="alert('More info coming soon...')">Extra Details</button>
-      <button @click="alert('Why are you clicking this?')">Mystery Button</button>
-    </div>
+    <!-- Overwhelming for no reason -->
+    <button @click="getDog">SHOW DOG</button>
+    <button @click="getDog">AGAIN</button>
+    <button @click="getDog">AGAIN AGAIN</button>
 
-    <div>
-      <img class="dog-image" :src="dogImage" />
-    </div>
+    <p>Breed?? <input></p>
+    <p>Rate this dog: <input type="number"></p>
+
+    <!-- No alt text, no description -->
+    <img v-if="dogPic" :src="dogPic" width="200">
+
+    <marquee>SO MANY DOGS WOW WOW WOW</marquee>
   </div>
 
   <script>
     const { createApp } = Vue;
-
     createApp({
       data() {
-        return {
-          dogImage: ''
-        };
+        return { dogPic: '' };
       },
       methods: {
-        loadDog() {
+        getDog() {
           fetch('https://dog.ceo/api/breeds/image/random')
-            .then(response => response.json())
-            .then(data => {
-              this.dogImage = data.message;
-            });
+            .then(res => res.json())
+            .then(data => { this.dogPic = data.message; });
         }
       }
     }).mount('#app');
