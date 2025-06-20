@@ -37,7 +37,7 @@ app.get("/api/walkrequests/open", async (req, res) => {
 
 
 app.get("/api/walkers/summary", async (req, res) => {
-  const summary = await getWalkerSummary();
+  const summary = await getAPIWalkerSummary();
   res.json(summary);
 });
 
