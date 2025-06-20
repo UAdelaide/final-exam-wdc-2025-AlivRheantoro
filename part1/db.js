@@ -11,6 +11,6 @@ async function getDogs() {
     return rows;
 }
 
-const Dogs = await getDogs()
-console.log(Dogs)
+const Dogs = await getDogs();
+console.log(Dogs);
 
