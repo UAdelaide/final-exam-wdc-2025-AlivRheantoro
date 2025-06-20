@@ -8,6 +8,10 @@ const connection = mysql.createConnection({
   password: ''
 }).promise();
 
+
+
+
+
 const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
