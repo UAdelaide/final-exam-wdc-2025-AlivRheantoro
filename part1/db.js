@@ -132,7 +132,7 @@ export async function getAPIDogs(){
   return rows;
 }
 
-export async function getAPIWalkReq
+export async function getAPIWalkReq(){
   const [rows] = await connection.query(`
     SELECT
       wr.request_id,
