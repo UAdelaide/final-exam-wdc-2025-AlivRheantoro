@@ -1,5 +1,5 @@
 import express from 'express';
-import
+import {getDogs}
 const app = express();
 
 app.get("/api/dogs", (req, res) => {
