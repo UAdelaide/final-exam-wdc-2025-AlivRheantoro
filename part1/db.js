@@ -11,7 +11,6 @@ const connection = mysql.createConnection({
 export async function initDatabase() {
   try {
     await connection.query(`CREATE DATABASE IF NOT EXISTS DogWalkService`);
-
     await connection.query(`USE DogWalkService`);
 
     await connection.query(`
@@ -79,6 +78,7 @@ export async function initDatabase() {
 
     console.log("Tables created");
 
+    // Insert Users if none exist
     const [userRows] = await connection.query("SELECT COUNT(*) AS count FROM Users");
     if (userRows[0].count === 0) {
       await connection.query(`
@@ -94,6 +94,7 @@ export async function initDatabase() {
       console.log("⚠️ Skipped Users (already exists)");
     }
 
+    // Insert Dogs if none exist
     const [dogRows] = await connection.query("SELECT COUNT(*) AS count FROM Dogs");
     if (dogRows[0].count === 0) {
       await connection.query(`
@@ -109,6 +110,7 @@ export async function initDatabase() {
       console.log("⚠️ Skipped Dogs (already exists)");
     }
 
+    // Insert WalkRequests if none exist
     const [walkRows] = await connection.query("SELECT COUNT(*) AS count FROM WalkRequests");
     if (walkRows[0].count === 0) {
       await connection.query(`
@@ -119,12 +121,16 @@ export async function initDatabase() {
           ((SELECT dog_id FROM Dogs WHERE name = 'Dug'), '2025-07-10 11:00:00', 30, 'This Street', 'accepted'),
           ((SELECT dog_id FROM Dogs WHERE name = 'egg'), '2025-07-10 12:30:00', 20, 'That Street', 'cancelled');
       `);
+      console.log("✅ Inserted WalkRequests");
+    } else {
+      console.log("⚠️ Skipped WalkRequests (already exists)");
+    }
 
-    console.log("Seed data inserted");
   } catch (err) {
     console.error('Failed to initialize DB:', err);
   }
 }
+
 
 
 export const appPool = mysql.createPool({
