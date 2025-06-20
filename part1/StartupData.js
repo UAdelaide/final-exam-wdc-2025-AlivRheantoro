@@ -3,12 +3,10 @@ const db = require('./db');
 
 async function seedDatabase() {
   try {
-    // Create database & use it
     await db.query(`DROP DATABASE IF EXISTS DogWalkService`);
     await db.query(`CREATE DATABASE DogWalkService`);
     await db.query(`USE DogWalkService`);
 
-    // Create tables
     await db.query(`
       CREATE TABLE Users (
         user_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -72,7 +70,7 @@ async function seedDatabase() {
       );
     `);
 
-    // Insert data only after tables are created
+
     await db.query(`
       INSERT INTO Users (username, email, password_hash, role) VALUES
       ('alice123', 'alice@example.com', 'hashed123', 'owner'),
@@ -100,9 +98,9 @@ async function seedDatabase() {
       ((SELECT dog_id FROM Dogs WHERE name = 'egg'), '2025-07-10 12:30:00', 20, 'That Street', 'cancelled')
     `);
 
-    console.log('✅ Schema created and data seeded.');
+    console.log('Schema created and data seeded.');
   } catch (err) {
-    console.error('❌ Startup error:', err.message);
+    console.error('Startup error:', err.message);
   }
 }
 
