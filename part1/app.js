@@ -5,7 +5,7 @@ const apiRoutes = require('./routes/api');
 const seedDatabase = require('./StartupData');
 
 
-seedDatabase();
+StartupDatabase();
 app.use('/api', apiRoutes);
 
 const PORT = 3000;
