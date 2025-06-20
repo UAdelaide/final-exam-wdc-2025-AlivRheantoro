@@ -4,7 +4,7 @@ const db = require('./db');
 async function seedDatabase() {
   try {
     const [users] = await db.query('SELECT COUNT(*) AS count FROM Users');
-    if (users[0].count > 0) return; // Skip if already seeded
+    if (users[0].count > 0) return;
 
     await db.query(`
       INSERT INTO Users (username, email, password_hash, role) VALUES
