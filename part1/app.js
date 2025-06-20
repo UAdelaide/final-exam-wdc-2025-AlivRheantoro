@@ -1,4 +1,4 @@
-import expressress';
+import express from 'express';
 
 const app = express();
 
