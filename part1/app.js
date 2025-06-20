@@ -147,6 +147,9 @@ let db;
 
 
 // ---------------- ROUTES ----------------
+app.get('/test', (req, res) => {
+  res.json({ msg: 'Test route works!' });
+});
 
 // GET /api/dogs
 app.get('/api/dogs', async (req, res) => {
