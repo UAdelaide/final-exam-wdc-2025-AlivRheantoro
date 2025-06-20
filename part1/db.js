@@ -4,12 +4,6 @@ const pool = mysql.createPool({
     user: 'root',
     password: '',
     database: 'DogWalkService'
-}).promise;
+}).promise();
 
-const = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'DogWalkService'
-});
 
