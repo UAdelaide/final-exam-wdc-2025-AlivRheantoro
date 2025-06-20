@@ -102,15 +102,6 @@ export async function initDatabase() {
 }
 
 
-export async function initDatabase() {
-  try {
-    await connection.query(dbInitSQL);
-    console.log("Database and tables ensured.");
-  } catch (err) {
-    console.error("Failed to initialize DB:", err);
-  }
-}
-
 export const appPool = mysql.createPool({
     host: 'localhost',
     user: 'root',
