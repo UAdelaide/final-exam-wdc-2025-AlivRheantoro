@@ -4,6 +4,7 @@ import {getDogs} from './db.js';
 const app = express();
 
 app.get("/api/dogs", (req, res) => {
+    const 
     res.send("woof");
 });
 
