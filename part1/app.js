@@ -1,5 +1,5 @@
 import express from 'express';
-import { initDatabase, getDogs, getAPIDogs} from './db.js';
+import { initDatabase, getDogs, getAPIDogs, getOpenWalkRequests } from './db.js';
 
 await initDatabase();
 
