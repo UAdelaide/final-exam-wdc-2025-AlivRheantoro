@@ -98,9 +98,10 @@ module.exports = async function StartupDatabase() {
       ((SELECT dog_id FROM Dogs WHERE name = 'egg'), '2025-07-10 12:30:00', 20, 'That Street', 'cancelled')
     `);
 
-    console.log('Schema created and data seeded.');
+    console.log('Database and seed data ready!');
   } catch (err) {
-    console.error('Startup error:', err.message);
+    console.error('❌ Error setting up database:', err);
+    throw err;
   }
 };
 
