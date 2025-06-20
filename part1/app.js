@@ -5,7 +5,7 @@ const seedDatabase = require('./Startup');
 
 app.use(express.json());
 
-// Seed data on startup
+
 seedDatabase();
 
 
