@@ -8,7 +8,7 @@ const connection = mysql.createConnection({
   password: ''
 }).promise();
 
-const dbInitSQL = '
+const dbInitSQL = `
 CREATE DATABASE IF NOT EXISTS DogWalkService;
 USE DogWalkService;
 
@@ -63,7 +63,8 @@ CREATE TABLE IF NOT EXISTS WalkRatings (
   FOREIGN KEY (walker_id) REFERENCES Users(user_id),
   FOREIGN KEY (owner_id) REFERENCES Users(user_id),
   CONSTRAINT unique_rating_per_walk UNIQUE (request_id)
-);'
+);
+`;
 
 
 
