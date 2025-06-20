@@ -1,5 +1,5 @@
 import express from 'express';
-import { initDatabase, getDogs, getAPIDogs, getAPIWalkReqsOpen} from './db.js';
+import { initDatabase, getDogs, getAPIDogs, getAPIWalkReqsOpen, APIWalkerSummary }from './db.js';
 
 await initDatabase();
 
@@ -28,7 +28,6 @@ app.get("/api/walkrequests/open", async (req, res) => {
   res.json(openRequests);
 });
 
-import { APIWalkerSummary } from './db.js';
 
 app.get("/api/walkers/summary", async (req, res) => {
   const summary = await APIWalkerSummary();
