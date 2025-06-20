@@ -4,7 +4,7 @@ import {getDogs} from './db.js';
 const app = express();
 
 app.get("/api/dogs", (req, res) => {
-    const 
+    const dogs = await getDogs()
     res.send("woof");
 });
 
