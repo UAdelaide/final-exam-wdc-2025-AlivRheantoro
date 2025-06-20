@@ -120,7 +120,7 @@ export const appPool = mysql.createPool({
     database: 'DogWalkService'
 }).promise();
 
-export async function getDogsWithOwners() {
+export async function apiDogs()
   const [rows] = await connection.query(`
     SELECT
       Dogs.name AS dog_name,
