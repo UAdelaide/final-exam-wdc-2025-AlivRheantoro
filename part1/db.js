@@ -1,6 +1,6 @@
 import mysql from 'mysql2';
 
-//a connection only if 
+//connection without database
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
