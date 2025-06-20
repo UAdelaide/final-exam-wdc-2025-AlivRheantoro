@@ -1,5 +1,5 @@
 import mysql from 'mysql2'
-const pool = require('mysql2/promise');
+const pool = mysql.createpool('mysql2/promise');
 
 const = mysql.createPool({
   host: 'localhost',
