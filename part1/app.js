@@ -2,7 +2,9 @@ import express from 'express';
 
 const app = express();
 
-app.get("/api/
+app.get("/api/dogs", (req, res) => {
+    res.send("")
+}
 
 app.use((err, req, res, next) => {
     console.error(err.stack)
