@@ -75,7 +75,7 @@ export async function initDatabase() {
   }
 }
 
-const pool = mysql.createPool({
+export const appPool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     password: '',
