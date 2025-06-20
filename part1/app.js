@@ -3,9 +3,13 @@ import {getDogs} from './db.js';
 
 const app = express();
 
-app.get("/api/dogs", (req, res) => {
-    const dogs = await getDogs()
+app.get("/api/dogs", async (req, res) => {
+  try {
+    const dogs = await getDogs();
     res.send(dogs);
+  } catch (err) {
+    res.status(500).send('Failed to fetch dogs');
+  }
 });
 
 app.use((err, req, res, next) => {
