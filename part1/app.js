@@ -117,6 +117,8 @@ let db;
           (1, (SELECT user_id FROM Users WHERE username='bobwalker'), (SELECT user_id FROM Users WHERE username='alice123'), 5, 'Excellent walk!'),
           (2, (SELECT user_id FROM Users WHERE username='bobwalker'), (SELECT user_id FROM Users WHERE username='carol123'), 4, 'Nice effort.')
       `);
+
+      
     }
 
     console.log('✅ Database and seed data ready');
