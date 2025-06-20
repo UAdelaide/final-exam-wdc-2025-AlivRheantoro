@@ -9,6 +9,7 @@ seedDatabase();
 app.use('/api', apiRoutes);
 
 
+
 const PORT = 3000;
 
 app.listen(PORT, () => {
