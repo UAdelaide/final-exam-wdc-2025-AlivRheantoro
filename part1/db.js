@@ -89,9 +89,9 @@ export async function initDatabase() {
           ('dogowner', 'dog@example.com', 'hashed111', 'owner'),
           ('eggwalker', 'egg@example.com', 'hashed222', 'walker');
       `);
-      console.log("✅ Inserted Users");
+      console.log("Inserted Users");
     } else {
-      console.log("⚠️ Skipped Users (already exists)");
+      console.log("Skipped Users (already exists)");
     }
 
     // Insert Dogs if none exist
