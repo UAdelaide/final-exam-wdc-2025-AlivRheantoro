@@ -3,10 +3,10 @@ import {
   initDatabase,
   getDogs,
   getAPIDogs,
-  getAPIWalkReqsOpen
-  getAPI
+  getAPIWalkReqsOpen,
+  getAPIWalkerSummary
 } from './db.js';
-from './db.js';
+
 
 await initDatabase();
 
