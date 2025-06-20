@@ -2,6 +2,7 @@
 const express = require('express');
 const apiRoutes = require('./routes/api');
 const StartupDatabase = require('./StartupData');
+StartupDatabase();
 
 const app = express();
 app.use(express.json());
@@ -10,13 +11,12 @@ app.get('/', (req, res) => {
   res.send('Check Insomnia GET for API response');
 });
 
-// Start the server only after DB is ready
 const PORT = 3000;
 
 (async () => {
   try {
-    await StartupDatabase(); // wait for DB setup
-    app.use('/api', apiRoutes); // register routes after DB is ready
+    await StartupDatabase();
+    app.use('/api', apiRoutes);
 
     app.listen(PORT, () => {
       console.log(`🚀 Server running at http://localhost:${PORT}`);
