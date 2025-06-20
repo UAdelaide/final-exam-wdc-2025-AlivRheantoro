@@ -82,6 +82,18 @@ let db;
         CONSTRAINT unique_rating_per_walk UNIQUE (request_id)
       )
     `);
+    await db.execute(`
+  CREATE TABLE IF NOT EXISTS WalkApplications (
+    application_id INT AUTO_INCREMENT PRIMARY KEY,
+    request_id INT NOT NULL,
+    walker_id INT NOT NULL,
+    applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('pending', 'accepted', 'rejected') DEFAULT 'pending',
+    FOREIGN KEY (request_id) REFERENCES WalkRequests(request_id),
+    FOREIGN KEY (walker_id) REFERENCES Users(user_id),
+    CONSTRAINT unique_application UNIQUE (request_id, walker_id)
+  )
+`);
 
     // Insert seed data only if empty
     const [users] = await db.query('SELECT COUNT(*) AS count FROM Users');
@@ -117,19 +129,6 @@ let db;
           (1, (SELECT user_id FROM Users WHERE username='bobwalker'), (SELECT user_id FROM Users WHERE username='alice123'), 5, 'Excellent walk!'),
           (2, (SELECT user_id FROM Users WHERE username='bobwalker'), (SELECT user_id FROM Users WHERE username='carol123'), 4, 'Nice effort.')
       `);
-
-      await db.execute(`
-        CREATE TABLE IF NOT EXISTS WalkApplications (
-        application_id INT AUTO_INCREMENT PRIMARY KEY,
-        request_id INT NOT NULL,
-        walker_id INT NOT NULL,
-        applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    status ENUM('pending', 'accepted', 'rejected') DEFAULT 'pending',
-    FOREIGN KEY (request_id) REFERENCES WalkRequests(request_id),
-    FOREIGN KEY (walker_id) REFERENCES Users(user_id),
-    CONSTRAINT unique_application UNIQUE (request_id, walker_id)
-  )
-`);
     }
 
     console.log('✅ Database and seed data ready');
