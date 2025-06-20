@@ -3,9 +3,6 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db');
 
-app.get('/', (req, res) => {
-    res.send('Check Insomnia GET for API response');
-});
 
 // /api/dogs
 router.get('/dogs', async (req, res) => {
