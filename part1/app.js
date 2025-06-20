@@ -16,7 +16,7 @@ app.get("dogs", async (req, res) => {
 
 app.get("/api/dogs", async (req, res) => {
   try {
-    const dogs = await getDogsWithOwners();
+    const dogs = await getAPIDogs();
     res.send(dogs);
   } catch (err) {
     res.status(500).send('Failed to fetch dogs');
