@@ -1,5 +1,5 @@
 import express from 'express';
-import {getDogs} from './db.js';
+import { initDatabase, getDogs } from './db.js';
 
 const app = express();
 
