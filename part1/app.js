@@ -1,18 +1,18 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const apiRoutes = require('./routes/api');
+const seedDatabase = require('./Startup');
 
-const db = require('./db');
-const StartupData = require('./StartupData');
+app.use(express.json());
 
-// Insert data on startup
-StartupData();
+// Seed data on startup
+seedDatabase();
 
 // Routes
-app.use('/api', require('./routes/dogs'));
-app.use('/api', require('./routes/walkrequests'));
-app.use('/api', require('./routes/walkers'));
+app.use('/api', apiRoutes);
 
-app.listen(port, () => {
-  console.log(`✅ Server running at http://localhost:${port}`);
+// Start server
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
