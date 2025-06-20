@@ -12,14 +12,6 @@ await initDatabase();
 
 const app = express();
 
-app.get("dogs", async (req, res) => {
-  try {
-    const dogs = await getDogs();
-    res.send(dogs);
-  } catch (err) {
-    res.status(500).send('Failed to fetch dogs');
-  }
-});
 
 app.get("/api/dogs", async (req, res) => {
   try {
