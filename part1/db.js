@@ -70,8 +70,6 @@ export async function initDatabase() {
   try {
     await connection.query(dbInitSQL);
     console.log("✅ Database and tables ensured.");
-
-    // ✅ Seed Users
     await connection.query(`
       INSERT IGNORE INTO Users (username, email, password_hash, role) VALUES
         ('alice123', 'alice@example.com', 'hashed123', 'owner'),
@@ -80,8 +78,6 @@ export async function initDatabase() {
         ('dogowner', 'dog@example.com', 'hashed111', 'owner'),
         ('eggwalker', 'egg@example.com', 'hashed222', 'walker');
     `);
-
-    // ✅ Seed Dogs
     await connection.query(`
       INSERT IGNORE INTO Dogs (owner_id, name, size) VALUES
         ((SELECT user_id FROM Users WHERE username = 'alice123'), 'Max', 'medium'),
@@ -90,8 +86,6 @@ export async function initDatabase() {
         ((SELECT user_id FROM Users WHERE username = 'dogowner'), 'Dug', 'large'),
         ((SELECT user_id FROM Users WHERE username = 'eggwalker'), 'egg', 'small');
     `);
-
-    // ✅ Seed WalkRequests
     await connection.query(`
       INSERT IGNORE INTO WalkRequests (dog_id, requested_time, duration_minutes, location, status) VALUES
         ((SELECT dog_id FROM Dogs WHERE name = 'Max'), '2025-06-10 08:00:00', 30, 'Parklands', 'open'),
