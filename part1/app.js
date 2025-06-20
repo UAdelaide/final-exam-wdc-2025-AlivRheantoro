@@ -8,7 +8,9 @@ app.use(express.json());
 seedDatabase();
 app.use('/api', apiRoutes);
 
-app.get('/', (req, res))
+app.get('/', (req, res) => {
+    res.send(Check)
+})
 
 const PORT = 3000;
 
