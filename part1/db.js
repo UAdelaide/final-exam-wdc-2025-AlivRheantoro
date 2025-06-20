@@ -1,6 +1,6 @@
 import mysql from 'mysql2';
 
-/   nnection without database
+// Connection for when DB is not created yet and not selected.
 
 const connection = mysql.createConnection({
   host: 'localhost',
