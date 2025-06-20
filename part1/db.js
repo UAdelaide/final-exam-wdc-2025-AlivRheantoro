@@ -6,6 +6,6 @@ const pool = mysql.createPool({
     database: 'DogWalkService'
 }).promise();
 
-
+const result
 
 
