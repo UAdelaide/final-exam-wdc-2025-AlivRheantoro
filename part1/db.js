@@ -7,10 +7,8 @@ const pool = mysql.createPool({
 }).promise()
 
 async function getDogs() {
-    const [rows] = await pool.query("Select * FROM Dogs")
-    return rows
-    console.log(result)
-
+    const [rows] = await pool.query("Select * FROM Dogs");
+    return rows;
 }
-
+console.log(result)
 
