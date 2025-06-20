@@ -48,7 +48,10 @@
         getDog() {
           fetch('https://dog.ceo/api/breeds/image/random')
             .then(res => res.json())
-            .then(data => { this.dogPic = data.message; });
+            .then(data => { this.dogPic = data.message;
+                this.breed = '';
+                this.rating = '';
+             });
         }
       }
     }).mount('#app');
