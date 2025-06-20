@@ -7,5 +7,6 @@ const pool = mysql.createPool({
 }).promise();
 
 const result = await pool.query("Select * FROM Dogs")
+console.log(result)
 
 
