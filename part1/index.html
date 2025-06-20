@@ -1,69 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Dog of the Day</title>
   <script src="https://unpkg.com/vue@3"></script>
   <style>
     body {
-      background: linear-gradient(to right, yellow, pink, cyan);
-      font-family: 'Comic Sans MS', cursive;
-      color: lightgray;
+      background-color: #ff0; /* bad contrast */
+      color: red;
+      font-family: Comic Sans MS;
+      margin: 0;
+      padding: 10px;
     }
-    .dog-container {
+    button {
+      margin: 5px;
+      padding: 10px;
+      font-size: 18px;
+    }
+    .info {
       display: flex;
-      flex-direction: row-reverse;
-      justify-content: space-evenly;
-      align-items: center;
-      flex-wrap: wrap;
-      padding: 50px;
+      flex-direction: column;
+      gap: 5px;
     }
-    img {
-      border: 10px dashed red;
-      animation: spin 4s infinite linear;
+    .dog-image {
+      margin-top: 10px;
       width: 300px;
-      height: 300px;
-    }
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    .button-area {
-      margin-top: 200px;
+      height: auto;
+      border: 5px dotted green;
     }
   </style>
 </head>
 <body>
   <div id="app">
-    <div class="dog-container" @click="fetchDog">
-      <h1 tabindex="0">{{ title }}</h1>
-      <img :src="dogImage" alt="" />
-      <p>Breed: {{ breed }}</p>
-      <button class="button-area" @mouseover="fetchDog">Hover to refresh dog</button>
+    <h1>🐶 D0G 0F TH3 D4Y 🐶</h1>
+
+    <div class="info">
+      <div>Dog Name: <input type="text" placeholder="Doggo123"></div>
+      <div>Breed: <select><option>Labrador</option><option>Beagle</option><option>Pug</option></select></div>
+      <div>Rating: <input type="number" min="1" max="5">/5</div>
+      <button @click="loadDog">Click for Surprise Dog Pic!</button>
+      <button @click="alert('More info coming soon...')">Extra Details</button>
+      <button @click="alert('Why are you clicking this?')">Mystery Button</button>
+    </div>
+
+    <div>
+      <img class="dog-image" :src="dogImage" />
     </div>
   </div>
 
   <script>
-    const app = Vue.createApp({
+    const { createApp } = Vue;
+
+    createApp({
       data() {
         return {
-          title: "🐶 Dog of the Day 🐾",
-          dogImage: "",
-          breed: "Mystery Pupper"
+          dogImage: ''
         };
       },
-      mounted() {
-        this.fetchDog();
-      },
       methods: {
-        async fetchDog() {
-          const res = await fetch('https://dog.ceo/api/breeds/image/random');
-          const data = await res.json();
-          this.dogImage = data.message;
+        loadDog() {
+          fetch('https://dog.ceo/api/breeds/image/random')
+            .then(response => response.json())
+            .then(data => {
+              this.dogImage = data.message;
+            });
         }
       }
-    });
-    app.mount('#app');
+    }).mount('#app');
   </script>
 </body>
 </html>
