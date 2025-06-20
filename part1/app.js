@@ -93,6 +93,7 @@ let db;
         FOREIGN KEY (walker_id) REFERENCES Users(user_id),
         CONSTRAINT unique_application UNIQUE (request_id, walker_id)
     )
+
 `);
 
     // Insert seed data only if empty
