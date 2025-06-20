@@ -149,7 +149,7 @@ export async function getAPIWalkReqsOpen(){
   return rows;
 }
 
-export async function APIWalkerSummary() {
+export async function getAPIWalkerSummary() {
   const [rows] = await connection.query(`
     SELECT
       u.username AS walker_username,
