@@ -1,11 +1,78 @@
-// seed.js
+// Startup.js
 const db = require('./db');
 
 async function seedDatabase() {
   try {
-    const [users] = await db.query('SELECT COUNT(*) AS count FROM Users');
-    if (users[0].count > 0) return;
+    // Create database & use it
+    await db.query(`DROP DATABASE IF EXISTS DogWalkService`);
+    await db.query(`CREATE DATABASE DogWalkService`);
+    await db.query(`USE DogWalkService`);
 
+    // Create tables
+    await db.query(`
+      CREATE TABLE Users (
+        user_id INT AUTO_INCREMENT PRIMARY KEY,
+        username VARCHAR(50) UNIQUE NOT NULL,
+        email VARCHAR(100) UNIQUE NOT NULL,
+        password_hash VARCHAR(255) NOT NULL,
+        role ENUM('owner', 'walker') NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
+    await db.query(`
+      CREATE TABLE Dogs (
+        dog_id INT AUTO_INCREMENT PRIMARY KEY,
+        owner_id INT NOT NULL,
+        name VARCHAR(50) NOT NULL,
+        size ENUM('small', 'medium', 'large') NOT NULL,
+        FOREIGN KEY (owner_id) REFERENCES Users(user_id)
+      );
+    `);
+
+    await db.query(`
+      CREATE TABLE WalkRequests (
+        request_id INT AUTO_INCREMENT PRIMARY KEY,
+        dog_id INT NOT NULL,
+        requested_time DATETIME NOT NULL,
+        duration_minutes INT NOT NULL,
+        location VARCHAR(255) NOT NULL,
+        status ENUM('open', 'accepted', 'completed', 'cancelled') DEFAULT 'open',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (dog_id) REFERENCES Dogs(dog_id)
+      );
+    `);
+
+    await db.query(`
+      CREATE TABLE WalkApplications (
+        application_id INT AUTO_INCREMENT PRIMARY KEY,
+        request_id INT NOT NULL,
+        walker_id INT NOT NULL,
+        applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        status ENUM('pending', 'accepted', 'rejected') DEFAULT 'pending',
+        FOREIGN KEY (request_id) REFERENCES WalkRequests(request_id),
+        FOREIGN KEY (walker_id) REFERENCES Users(user_id),
+        CONSTRAINT unique_application UNIQUE (request_id, walker_id)
+      );
+    `);
+
+    await db.query(`
+      CREATE TABLE WalkRatings (
+        rating_id INT AUTO_INCREMENT PRIMARY KEY,
+        request_id INT NOT NULL,
+        walker_id INT NOT NULL,
+        owner_id INT NOT NULL,
+        rating INT CHECK (rating BETWEEN 1 AND 5),
+        comments TEXT,
+        rated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (request_id) REFERENCES WalkRequests(request_id),
+        FOREIGN KEY (walker_id) REFERENCES Users(user_id),
+        FOREIGN KEY (owner_id) REFERENCES Users(user_id),
+        CONSTRAINT unique_rating_per_walk UNIQUE (request_id)
+      );
+    `);
+
+    // Insert data only after tables are created
     await db.query(`
       INSERT INTO Users (username, email, password_hash, role) VALUES
       ('alice123', 'alice@example.com', 'hashed123', 'owner'),
@@ -33,10 +100,11 @@ async function seedDatabase() {
       ((SELECT dog_id FROM Dogs WHERE name = 'egg'), '2025-07-10 12:30:00', 20, 'That Street', 'cancelled')
     `);
 
-    console.log('Database Startup success');
+    console.log('✅ Schema created and data seeded.');
   } catch (err) {
-    console.error('Startup error:', err);
+    console.error('❌ Startup error:', err.message);
   }
 }
 
 module.exports = seedDatabase;
+
