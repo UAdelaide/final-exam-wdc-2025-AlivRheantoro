@@ -1,6 +1,7 @@
 import mysql from 'mysql2';
 
-//connection without database
+/   nnection without database
+
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
