@@ -12,5 +12,5 @@ async function getDogs() {
 }
 
 const Dogs = await getDogs()
-console.log(rows)
+console.log(Dogs)
 
