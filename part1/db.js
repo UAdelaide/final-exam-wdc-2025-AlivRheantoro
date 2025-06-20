@@ -6,6 +6,6 @@ const pool = mysql.createPool({
     database: 'DogWalkService'
 }).promise();
 
-const result = await pool.query("Select * from")
+const result = await pool.query("Select * FROM Dogs")
 
 
