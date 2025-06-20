@@ -4,6 +4,7 @@ const db = require('./db');
 module.exports = async function StartupDatabase() {
   try {
     await db.query(`DROP DATABASE IF EXISTS DogWalkService`);
+    await db.query(`CREATE DATABASE DogWalkService`);
     await db.query(`USE DogWalkService`);
 
     await db.query(`
