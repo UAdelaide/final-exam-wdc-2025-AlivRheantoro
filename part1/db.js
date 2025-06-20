@@ -112,12 +112,6 @@ export async function initDatabase() {
   }
 }
 
-    console.log("Seed data inserted.");
-  } catch (err) {
-    console.error("Failed to initialize DB:", err);
-  }
-}
-
 
 export const appPool = mysql.createPool({
     host: 'localhost',
