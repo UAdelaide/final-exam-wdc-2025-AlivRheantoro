@@ -5,7 +5,7 @@ const app = express();
 
 app.get("/api/dogs", (req, res) => {
     const dogs = await getDogs()
-    res.send("woof");
+    res.send(dogs);
 });
 
 app.use((err, req, res, next) => {
