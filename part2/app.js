@@ -23,7 +23,20 @@ const connection = mysql.createConnection({
   database:'DogWalkService'
 }).promise();
 
+app.post('/api/login', async (req, res) => {
+  const { username, password } = req.body;
 
+  if (!username || !password) {
+    return res.status(400).json({ error: 'Missing username or password' });
+  }
+
+  try {
+    const [rows] = await connection.query('SELECT * FROM Users WHERE username = ?', [username]);
+    const user = rows[0];
+
+    if (!user || user.password_hash !== password) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
 
 // Routes
 const walkRoutes = require('./routes/walkRoutes');
