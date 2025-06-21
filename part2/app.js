@@ -38,7 +38,7 @@ app.post('/api/login', async (req, res) => {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
-    
+
     req.session.user = {
       id: user.user_id,
       username: user.username,
@@ -46,7 +46,7 @@ app.post('/api/login', async (req, res) => {
     };
 
     // Respond with role for redirect
-    res.json({ message: 'Login successful', role: user.role });
+    
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Internal server error' });
