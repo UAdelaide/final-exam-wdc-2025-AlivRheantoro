@@ -15,7 +15,12 @@ app.use(session({
   saveUninitialized: false,
 }));
 
-
+const connection = await mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'DogWalkService',
+});.promise();
 
 
 
