@@ -128,8 +128,6 @@ export async function initDatabase() {
   }
 }
 
-
-
 export const appPool = mysql.createPool({
     host: 'localhost',
     user: 'root',
