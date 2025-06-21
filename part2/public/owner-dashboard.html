@@ -121,9 +121,9 @@
 
         async function logout() {
         try {
-      const res = await fetch('/api/logout', { method: 'POST' });
-      if (res.ok) {
-        window.location.href = '/login.html';  // Redirect after logout
+          const res = await fetch('/api/logout', { method: 'POST' });
+          if (res.ok) {
+            window.location.href = '/login.html';  // Redirect after logout
       } else {
         alert('Logout failed');
       }
