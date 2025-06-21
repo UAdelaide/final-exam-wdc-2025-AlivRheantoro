@@ -117,10 +117,25 @@
           }
         }
 
+                async function logout() {
+          try {
+            const res = await fetch('/api/logout', { method: 'POST' });
+            if (res.ok) {
+              window.location.href = '/login.html';  // redirect to login page after logout
+            } else {
+              alert('Logout failed');
+            }
+          } catch (err) {
+            console.error('Logout error:', err);
+            alert('Error logging out');
+          }
+        }
+
+
+
         onMounted(() => {
           loadWalks();
         });
-
 
         return {
           form,
