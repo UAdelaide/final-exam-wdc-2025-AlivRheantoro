@@ -35,7 +35,7 @@ app.post('/api/login', async (req, res) => {
     const user = rows[0];
 
     if (!user || user.password_hash !== password) {
-      return res.status(401).json({ error: 'Invalid username or password' });
+      return res.status(401).json({ error: 'Invalid credentials' });
     }
 
 
