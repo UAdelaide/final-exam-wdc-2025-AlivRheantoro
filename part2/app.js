@@ -61,6 +61,7 @@ app.post('/api/logout', (req, res) => {
   });
 });
 
+
 // Routes
 const walkRoutes = require('./routes/walkRoutes');
 const userRoutes = require('./routes/userRoutes');
