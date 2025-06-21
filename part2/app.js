@@ -38,7 +38,7 @@ app.post('/api/login', async (req, res) => {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
-    // Save user info in session
+    
     req.session.user = {
       id: user.user_id,
       username: user.username,
