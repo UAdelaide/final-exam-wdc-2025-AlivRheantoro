@@ -45,7 +45,6 @@ app.post('/api/login', async (req, res) => {
       role: user.role,
     };
 
-    // Respond with role for redirect
     res.json({ message: 'Login successful', role: user.role });
   } catch (err) {
     console.error(err);
@@ -56,7 +55,7 @@ app.post('/api/login', async (req, res) => {
 app.post('/api/logout', (req, res) => {
   req.session.destroy(err => {
     if (err) return res.status(500).json({ error: 'Logout failed' });
-    res.clearCookie('connect.sid'); // Clears the session cookie
+    res.clearCookie('connect.sid');
     res.status(200).json({ message: 'Logged out successfully' });
   });
 });
