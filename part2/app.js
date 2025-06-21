@@ -46,7 +46,7 @@ app.post('/api/login', async (req, res) => {
     };
 
     // Respond with role for redirect
-    
+    res.json({ message: 'Login successful', role: user.role });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Internal server error' });
