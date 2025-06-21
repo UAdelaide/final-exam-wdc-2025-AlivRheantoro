@@ -124,10 +124,10 @@
           const res = await fetch('/api/logout', { method: 'POST' });
           if (res.ok) {
             window.location.href = '/login.html';  // Redirect after logout
-      } else {
-        alert('Logout failed');
-      }
-    } catch (err) {
+          } else {
+            alert('Logout failed');
+          }
+        } catch (err) {
       console.error('Logout error:', err);
       alert('Error logging out');
     }
